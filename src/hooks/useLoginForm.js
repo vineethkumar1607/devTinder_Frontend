@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { validateEmail, validatePassword } from "../utils/formValidators"
-import { object } from "prop-types";
+
 
 const useLoginForm = ({ onSuccess }) => {
 
@@ -12,8 +12,8 @@ const useLoginForm = ({ onSuccess }) => {
         newErrors.email = validateEmail(loginFormData.email);
         newErrors.password = validatePassword(loginFormData.password);
         setError(newErrors);
-      // If any error string is truthy, return false
-        return !object.values(newErrors).some(Boolean)
+        // If any error string is truthy, return false
+        return !Object.values(newErrors).some(Boolean)
     }
 
     const handleChange = (e) => {
@@ -21,13 +21,13 @@ const useLoginForm = ({ onSuccess }) => {
         setLoginFormData((prev) => ({ ...prev, [name]: value }))
         // Clears error when typing
         if (error[name]) {
-            setLoginFormData((prev) => ({ ...prev, [name]: "" }))
+            setError((prev) => ({ ...prev, [name]: "" }))
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (validateCredentials) {
+        if (validateCredentials()) {
             onSuccess(loginFormData)
         }
     }

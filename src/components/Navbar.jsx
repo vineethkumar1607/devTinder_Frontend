@@ -1,7 +1,15 @@
-import React from 'react';
+import { memo } from 'react';
+import { shallowEqual, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
+import { DEFAULT_PROFILE_IMAGE } from '../utils/constants';
+
 
 function Navbar() {
+    const userData = useSelector((state) => state.user.user, shallowEqual);
+    console.log("from navbar", userData)
+
+    const userprofileImage = userData?.photoUrl || DEFAULT_PROFILE_IMAGE
+
     return (
         <nav className="navbar bg-base-300 shadow-sm px-4" aria-label="Main navigation">
             {/* Logo/Brand */}
@@ -80,7 +88,7 @@ function Navbar() {
                 </div>
 
                 {/* User Profile Dropdown */}
-                <div className="dropdown dropdown-end">
+                {userData ? (<div className="dropdown dropdown-end">
                     <button
                         tabIndex={0}
                         className="btn btn-ghost btn-circle avatar hover:ring-2 hover:ring-primary focus:ring-2 focus:ring-primary"
@@ -89,7 +97,7 @@ function Navbar() {
                         <div className="w-10 rounded-full">
                             <img
                                 alt="User profile"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                                src={userprofileImage}
                                 width={40}
                                 height={40}
                                 loading="lazy"
@@ -104,16 +112,20 @@ function Navbar() {
                         <li>
                             <NavLink to="/profile" className="justify-between">
                                 Profile
-                                <span className="badge badge-primary">New</span>
+                                <span className="badge badge-primary">{userData.firstName}</span>
                             </NavLink>
                         </li>
                         <li><NavLink to="/settings">Settings</NavLink></li>
                         <li><button>Logout</button></li>
                     </ul>
-                </div>
+                </div>) : (
+                    <Link to="/login" className="btn btn-sm btn-outline btn-primary">
+                        Login
+                    </Link>
+                )}
             </div>
         </nav>
     );
 }
 
-export default Navbar;
+export default memo(Navbar);

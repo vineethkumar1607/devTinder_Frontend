@@ -7,7 +7,7 @@ const Home = () => {
         <>
             Home - page
 
-            <LoginPage />
+         
         </>
     )
 }
