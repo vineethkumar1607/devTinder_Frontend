@@ -2,12 +2,12 @@ import { memo } from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { DEFAULT_PROFILE_IMAGE } from '../utils/constants';
-
+import { useAuth } from '../hooks/useAuth';
 
 function Navbar() {
     const userData = useSelector((state) => state.user.user, shallowEqual);
     const userprofileImage = userData?.photoUrl || DEFAULT_PROFILE_IMAGE
-
+    const { logout } = useAuth()
     return (
         <nav className="navbar bg-base-300 shadow-sm px-4" aria-label="Main navigation">
             {/* Logo/Brand */}
@@ -114,7 +114,7 @@ function Navbar() {
                             </NavLink>
                         </li>
                         <li><NavLink to="/settings">Settings</NavLink></li>
-                        <li><button>Logout</button></li>
+                        <li><button onClick={logout} >Logout</button></li>
                     </ul>
                 </div>) : (
                     <Link to="/login" className="btn btn-sm btn-outline btn-primary">

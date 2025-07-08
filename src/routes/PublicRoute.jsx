@@ -6,13 +6,11 @@ import Spinner from "../components/Spinner";
 const PublicRoute = ({ children }) => {
   const { isAuthenticated, isLoading } = useSelector((state) => state.user);
 
-  // Wait for user data to load before checking auth
-  if (isLoading) return <Spinner />;
+if (isLoading) return <Spinner />;
 
-  // If already logged in, redirect to home page
-  if (isAuthenticated) {
-    return <Navigate to="/" replace />;
-  }
+if (isAuthenticated) {
+  return <Navigate to="/" replace />;
+}
 
   return children;
 };
