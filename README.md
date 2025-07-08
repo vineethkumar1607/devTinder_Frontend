@@ -31,35 +31,41 @@ Welcome to the `devTinder Frontend` repository! This project powers the client-s
 
 - **Authentication System**
   - Login/Logout with JWT and cookie-based session
-  - Protected routes using React Router
-  - Form validation using custom `useLoginForm` hook
-  - Auth state persisted via Redux
+  - Global session validation using `AppLayout`
+  - Protected & Public route guards with route preservation
+  - Form validation using `useLoginForm` hook
+  - Inline error display and layout-safe error handling
 
 - **Global State Management**
-  - Redux Toolkit integration (`userSlice`, `appStore`)
-  - Centralized state for user authentication
+  - Redux Toolkit (`userSlice`, `appStore`)
+  - `isAuthenticated`, `isLoading`, `user` state maintained globally
 
 - **UI Components**
   - Optimized `Navbar` with memoization and `shallowEqual`
-  - Reusable `TextInput` and `PasswordInput`
-  - Responsive DaisyUI design with dark/light theme support
+  - Reusable `TextInput`, `PasswordInput`
+  - `Spinner` component for loading states
+  - Toast notifications for success (`react-hot-toast`)
 
-- **UX Enhancements**
-  - Toast notifications with `react-hot-toast`
-  - Loading indicators with `Spinner`
-  - Mobile-friendly navigation menu
+- **Logout Feature**
+  - Logout implemented via reusable `useLogout` hook
+  - Secure backend logout with cookie removal and Redux reset
 
-- **API Integration**
-  - Secure POST `/auth/login` with Axios
-  - `withCredentials: true` support for cookies
-  - Centralized API constants in `constants.js`
+- **Routing**
+  - React Router v6.23 setup
+  - Nested layouts (`AppLayout`, `MainLayout`, `PublicLayout`)
+  - `NotFound` page for unknown routes
+
+- **User Experience**
+  - Fully responsive design (DaisyUI + Tailwind)
+  - Mobile-first navigation support
+  - Inline validation, no layout shifts during error states
 
 ### 🚧 Planned
 
-- Developer profile cards & feed
-- Swipe-based connection interactions
-- Messaging & real-time chat
-- Profile creation/editing
+- Developer profile creation/editing
+- Developer discovery cards (swipe or match-based)
+- Messaging & real-time chat (WebSocket/Socket.io)
+- Notification system for invites/messages
 
 ---
 
@@ -89,11 +95,9 @@ Welcome to the `devTinder Frontend` repository! This project powers the client-s
 ### 🔧 Installation
 
 ```bash
-git clone https://github.com/your-username/devtinder-frontend.git // have to chnage later
-
+git clone https://github.com/your-username/devtinder-frontend.git
 cd devtinder-frontend
 npm install
-
 
 
 
@@ -105,26 +109,34 @@ src/
 │   │   ├── LoginForm.jsx
 │   │   ├── PasswordInput.jsx
 │   │   └── TextInput.jsx
-│   ├── formFields/          # Generic form inputs
-│   ├── layouts/             # Page/layout wrappers
-│   ├── Navbar.jsx           # Optimized navbar
-│   └── Spinner.js           # Loading spinner
+│   ├── formFields/          # Generic input components
+│   ├── layouts/             # Layout components (MainLayout, PublicLayout)
+│   ├── Navbar.jsx           # Memoized Navbar
+│   └── Spinner.jsx          # Loading spinner
 ├── hooks/
-│   └── useLoginForm.js      # Custom hook for login handling
-├── pages/                   # Route-based components
+│   ├── useLoginForm.js      # Custom login form logic
+│   └── useLogout.js         # Reusable logout logic
+├── layouts/
+│   ├── AppLayout.jsx        # Global auth/session checker
+│   ├── MainLayout.jsx       # Protected layout with navbar
+│   └── PublicLayout.jsx     # Login/signup-only layout
+├── pages/                   # Route-based pages
 │   ├── Connections.jsx
 │   ├── Home.jsx
 │   ├── LoginPage.jsx
 │   └── NotFound.jsx
 ├── routes/                  # React Router config
+│   ├── ProtectedRoute.jsx
+│   ├── PublicRoute.jsx
+│   └── router.jsx
 ├── services/
-│   └── api.js               # Axios instance setup
+│   └── axiosInstance.js     # Axios instance with cookies enabled
 ├── utils/
-│   ├── constants.js         # App-level constants (API base URL, defaults)
-│   ├── formValidators.js    # Input validation helpers
-│   └── redux/               # Redux store setup
-│       ├── appStore.js      # Configured Redux store
-│       └── userSlice.js     # User auth reducer
-├── App.css                  # Global styles
+│   ├── constants.js         # API base URL and other constants
+│   ├── formValidators.js    # Input validation logic
+│   └── redux/               # Redux config
+│       ├── appStore.js
+│       └── userSlice.js
 ├── App.jsx                  # Root component
-└── index.css                # Tailwind/DaisyUI base styles
+├── App.css                  # Global styles
+└── index.css                # Tailwind & DaisyUI base styles
