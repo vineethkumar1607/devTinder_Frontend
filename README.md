@@ -1,96 +1,130 @@
-# devTinder Frontend  
+# devTinder Frontend
 
-![devTinder Banner](https://placehold.co/1200x400?text=devTinder+Developer+Networking+Platform)  
+![devTinder Banner](https://placehold.co/1200x400?text=devTinder+Developer+Networking+Platform)
 
-**A Modern Developer Networking Platform**  
+**A Modern Developer Networking Platform**
 
-Welcome to the `devTinder Frontend` repository! This project powers the client-side experience for devTinder, a platform dedicated to helping developers connect, network, and discover new opportunities based on shared interests, skills, and professional goals.
+Welcome to the `devTinder Frontend` repository! This project powers the client-side experience for devTinder — a networking platform where developers can connect, collaborate, and grow professionally.
 
-## 📑 Table of Contents  
-- [Features](#-features)  
-- [Technologies Used](#-technologies-used)  
-- [Getting Started](#%EF%B8%8F-getting-started)  
-  - [Prerequisites](#prerequisites)  
-  - [Installation](#installation)  
-  - [Environment Variables](#environment-variables)  
-  - [Running the Server](#running-the-development-server)  
-- [Project Structure](#-project-structure)  
-- [API Endpoints](#-api-endpoints-frontend-interaction)  
-- [Deployment](#-deployment)  
-- [Contributing](#-contributing)  
-- [License](#-license)  
+---
 
-## ✨ Features  
+## 📑 Table of Contents
 
-### ✅ Implemented  
-- **Authentication System**  
-  - Login/Logout with JWT token management  
-  - Protected routes using React Router  
-  - Form validation with `useLoginForm` hook  
+- [Features](#-features)
+- [Technologies Used](#-technologies-used)
+- [Getting Started](#%EF%B8%8F-getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Environment Variables](#environment-variables)
+  - [Running the Development Server](#running-the-development-server)
+- [Project Structure](#-project-structure)
+- [API Endpoints (Frontend Interaction)](#-api-endpoints-frontend-interaction)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-- **Core UI Components**  
-  - Reusable `TextInput` and `PasswordInput`  
-  - Responsive DaisyUI navbar  
-  - Loading states and error toasts  
+---
 
-- **API Integration**  
-  - Axios with interceptors  
-  - POST `/login` endpoint  
-  - Authorization headers  
+## ✨ Features
 
-### 🚧 Planned  
-- Developer matching feed  
-- Connection management (Like/Pass)  
-- User profile pages  
+### ✅ Implemented
 
-## 🛠 Technologies Used  
+- **Authentication System**
+  - Login/Logout with JWT and cookie-based session
+  - Protected routes using React Router
+  - Form validation using custom `useLoginForm` hook
+  - Auth state persisted via Redux
 
-| Category          | Technology       |
-|-------------------|------------------|
-| Framework         | React 18         |
-| Build Tool        | Vite 4           | 
-| Routing           | React Router 6   |
-| Styling           | Tailwind CSS + DaisyUI |
-| HTTP Client       | Axios 1.5        |
-| Backend           | Node.js/Express  |
+- **Global State Management**
+  - Redux Toolkit integration (`userSlice`, `appStore`)
+  - Centralized state for user authentication
 
-## ⚙️ Getting Started  
+- **UI Components**
+  - Optimized `Navbar` with memoization and `shallowEqual`
+  - Reusable `TextInput` and `PasswordInput`
+  - Responsive DaisyUI design with dark/light theme support
 
-### Prerequisites  
-- Node.js ≥18.x  
-- npm ≥8.x or Yarn  
-- Git  
+- **UX Enhancements**
+  - Toast notifications with `react-hot-toast`
+  - Loading indicators with `Spinner`
+  - Mobile-friendly navigation menu
 
-### Installation  
+- **API Integration**
+  - Secure POST `/auth/login` with Axios
+  - `withCredentials: true` support for cookies
+  - Centralized API constants in `constants.js`
+
+### 🚧 Planned
+
+- Developer profile cards & feed
+- Swipe-based connection interactions
+- Messaging & real-time chat
+- Profile creation/editing
+
+---
+
+## 🛠 Technologies Used
+
+| Category        | Technology             |
+|----------------|------------------------|
+| Framework      | React 18               |
+| Build Tool     | Vite 4                 |
+| Styling        | Tailwind CSS + DaisyUI |
+| Routing        | React Router v6        |
+| State Manager  | Redux Toolkit          |
+| API Handling   | Axios 1.5              |
+| Notifications  | react-hot-toast        |
+| Backend API    | Node.js + Express      |
+
+---
+
+## ⚙️ Getting Started
+
+### 📌 Prerequisites
+
+- Node.js ≥ 18.x
+- npm ≥ 8.x (or Yarn)
+- Git
+
+### 🔧 Installation
+
 ```bash
-git clone https://github.com/your-username/devtinder-frontend.git
+git clone https://github.com/your-username/devtinder-frontend.git // have to chnage later
+
 cd devtinder-frontend
 npm install
 
 
+
+
+
 src/
-├── assets/ # Static assets (images, icons)
-├── components/ # Reusable UI components
-│ ├── auth/ # Authentication components
-│ │ ├── LoginForm.jsx # Login form with validation
-│ │ ├── PasswordInput.jsx # Secure password field
-│ │ └── TextInput.jsx # Controlled text input
-│ ├── formFields/ # Form input components
-│ ├── layouts/ # Layout wrappers
-│ ├── Navbar.jsx # Main navigation
-│ └── Spinner.js # Loading indicator
-├── hooks/ # Custom hooks
-│ └── useLoginForm.js # Form handling logic
-├── pages/ # Route components
-│ ├── Connections.jsx # Connection management
-│ ├── Home.jsx # Landing page
-│ ├── LoginPage.jsx # Login screen
-│ └── NotFound.jsx # 404 page
-├── routes/ # Route configurations
-├── services/ # API services
-│ └── api.js # Axios instance
-├── utils/ # Utility functions
-│ └── formValidators.js # Validation logic
-├── App.css # Global styles
-├── App.jsx # Root component
-└── index.css # Base styles
+├── assets/                  # Static files (images, icons)
+├── components/              # Reusable UI components
+│   ├── auth/                # Auth-related components
+│   │   ├── LoginForm.jsx
+│   │   ├── PasswordInput.jsx
+│   │   └── TextInput.jsx
+│   ├── formFields/          # Generic form inputs
+│   ├── layouts/             # Page/layout wrappers
+│   ├── Navbar.jsx           # Optimized navbar
+│   └── Spinner.js           # Loading spinner
+├── hooks/
+│   └── useLoginForm.js      # Custom hook for login handling
+├── pages/                   # Route-based components
+│   ├── Connections.jsx
+│   ├── Home.jsx
+│   ├── LoginPage.jsx
+│   └── NotFound.jsx
+├── routes/                  # React Router config
+├── services/
+│   └── api.js               # Axios instance setup
+├── utils/
+│   ├── constants.js         # App-level constants (API base URL, defaults)
+│   ├── formValidators.js    # Input validation helpers
+│   └── redux/               # Redux store setup
+│       ├── appStore.js      # Configured Redux store
+│       └── userSlice.js     # User auth reducer
+├── App.css                  # Global styles
+├── App.jsx                  # Root component
+└── index.css                # Tailwind/DaisyUI base styles

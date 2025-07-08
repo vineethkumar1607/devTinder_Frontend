@@ -6,8 +6,6 @@ import { DEFAULT_PROFILE_IMAGE } from '../utils/constants';
 
 function Navbar() {
     const userData = useSelector((state) => state.user.user, shallowEqual);
-    console.log("from navbar", userData)
-
     const userprofileImage = userData?.photoUrl || DEFAULT_PROFILE_IMAGE
 
     return (
