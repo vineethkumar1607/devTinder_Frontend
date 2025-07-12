@@ -1,16 +1,14 @@
-export const validateEmail = (email) => {
-    if (!email) return 'Email is required';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Invalid email format';
-    if (email.length > 254) return 'Email too long'; // RFC 5321 limit
-    return '';
+import * as Yup from "yup";
 
-}
-
-export const validatePassword = (password) => {
-  if (!password) return 'Password is required';
-  if (password.length < 8) return 'Password must be at least 8 characters';
-  if (!/[A-Z]/.test(password)) return 'Include at least one uppercase letter';
-  if (!/[0-9]/.test(password)) return 'Include at least one number';
-  if (!/[^A-Za-z0-9]/.test(password)) return 'Include at least one special character';
-  return '';
-};
+export const loginValidationSchema = Yup.object({
+  email: Yup.string()
+    .required("Email is required")
+    .email("Invalid email format")
+    .max(254, "Email too long"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(/[A-Z]/, "Include at least one uppercase letter")
+    .matches(/[0-9]/, "Include at least one number")
+    .matches(/[^A-Za-z0-9]/, "Include at least one special character"),
+});

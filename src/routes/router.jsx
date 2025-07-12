@@ -6,8 +6,10 @@ import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
 import Connections from "../pages/Connections";
 import LoginPage from "../pages/LoginPage";
+import Profile from "../pages/Profile"
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./publicroute";
+
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ export const router = createBrowserRouter([
             element: (
               <ProtectedRoute>
                 <Connections />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "profile",
+            element: (
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             ),
           },

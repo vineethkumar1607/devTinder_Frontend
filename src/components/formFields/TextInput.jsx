@@ -1,53 +1,36 @@
-import React from 'react';
+import { useField } from 'formik';
 import PropTypes from 'prop-types';
 
-const TextInput = ({
-    label,
-    name,
-    type = 'text',
-    value,
-    onChange,
-    error,
-    placeholder,
-    required = false,
-    ...props
-}) => (
+const TextInput = ({ label, id, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
     <div className="form-control w-full mb-4">
-        <label htmlFor={name} className="label">
-            <span className="label-text">
-                {label}
-                {required && <span className="text-error"> *</span>}
-            </span>
-        </label>
-        <input
-            type={type}
-            id={name}
-            name={name}
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
-            className={`input input-bordered w-full ${error ? 'input-error' : ''}`}
-            aria-invalid={!!error}
-            aria-describedby={error ? `${name}-error` : undefined}
-            {...props}
-        />
-        {error && (
-            <span id={`${name}-error`} className="mt-1 text-sm text-error">
-                {error}
-            </span>
-        )}
+      <label htmlFor={id } className="label">
+        <span className="label-text">
+          {label}
+          {props.required && <span className="text-error"> *</span>}
+        </span>
+      </label>
+      <input
+        id={id}
+        {...field}
+        {...props}
+        className={`input input-bordered w-full ${meta.touched && meta.error ? 'input-error' : ''
+          }`}
+      />
+      {meta.touched && meta.error ? (
+        <span className="mt-1 text-sm text-error">{meta.error}</span>
+      ) : null}
     </div>
-);
+  );
+};
 
 TextInput.propTypes = {
-    label: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string,
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    error: PropTypes.string,
-    placeholder: PropTypes.string,
-    required: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+   id: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 export default TextInput;
