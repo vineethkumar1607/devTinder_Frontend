@@ -60,6 +60,19 @@ Welcome to the `devTinder Frontend` repository! This project powers the client-s
   - Mobile-first navigation support
   - Inline validation, no layout shifts during error states
 
+  - **Profile Management System**
+  - Complete edit profile functionality with `createAsyncThunk`
+  - Formik-based profile editing form with validation schema
+  - New form field components (`TextInput`, `TextArea`, `GenderSelect`, `SkillsInput`)
+  - Redux-powered profile state management
+  - Success/error toast notifications for profile updates
+
+- **Developer Feed**
+  - Implemented Feed page with developer cards
+  - Responsive card design with skills display
+  - Interactive action buttons (Ignore/Interested)
+  - Profile picture handling with fallbacks
+
 ### 🚧 Planned
 
 - Developer profile creation/editing
@@ -107,16 +120,21 @@ src/
 ├── components/              # Reusable UI components
 │   ├── auth/                # Auth-related components
 │   │   ├── LoginForm.jsx
-│   │   ├── PasswordInput.jsx
-│   │   └── TextInput.jsx
-│   ├── formFields/          # Generic input components
-│   ├── layouts/             # Layout components (MainLayout, PublicLayout)
+│   │  
+│   │  
+│   ├── formFields/         # Generic input components
+│   │    ├──PasswordInput.jsx
+│   │    ├── TextInput.jsx
+│   │    ├── TextArea.jsx
+│   │    ├── SkillsInput.jsx
+│   │    └── GenderSelect.jsx
+│   │           
 │   ├── Navbar.jsx           # Memoized Navbar
 │   └── Spinner.jsx          # Loading spinner
 ├── hooks/
 │   ├── useLoginForm.js      # Custom login form logic
 │   └── useLogout.js         # Reusable logout logic
-├── layouts/
+├── layouts/                 # Layout components (MainLayout, PublicLayout)
 │   ├── AppLayout.jsx        # Global auth/session checker
 │   ├── MainLayout.jsx       # Protected layout with navbar
 │   └── PublicLayout.jsx     # Login/signup-only layout
@@ -124,19 +142,33 @@ src/
 │   ├── Connections.jsx
 │   ├── Home.jsx
 │   ├── LoginPage.jsx
-│   └── NotFound.jsx
+│   ├── ErrorPage.jsx
+│   ├── NotFound.jsx
+│   ├── Profile.jsx
+│   ├──            .jsx
 ├── routes/                  # React Router config
 │   ├── ProtectedRoute.jsx
 │   ├── PublicRoute.jsx
 │   └── router.jsx
-├── services/
-│   └── axiosInstance.js     # Axios instance with cookies enabled
+│    
 ├── utils/
-│   ├── constants.js         # API base URL and other constants
+│   ├── constants.js         # API base URL and other constants 
+│   ├── axiosInstance.js     # Axios instance with cookies enabled
 │   ├── formValidators.js    # Input validation logic
+│   ├── profileValidation.js # update profile validation schema
 │   └── redux/               # Redux config
 │       ├── appStore.js
-│       └── userSlice.js
+│       ├── feedSlice.js
+│       ├── userSlice.js
 ├── App.jsx                  # Root component
 ├── App.css                  # Global styles
 └── index.css                # Tailwind & DaisyUI base styles
+└── Main.jsx.css             # Tailwind & DaisyUI base styles
+
+
+
+
+
+
+// for later
+## Real-time connection requests (your case)

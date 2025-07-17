@@ -113,6 +113,7 @@ function Navbar() {
                                 <span className="badge badge-primary">{userData.firstName}</span>
                             </NavLink>
                         </li>
+                        <li><NavLink to="/requests">Requests</NavLink></li>
                         <li><NavLink to="/settings">Settings</NavLink></li>
                         <li><button onClick={logout} >Logout</button></li>
                     </ul>

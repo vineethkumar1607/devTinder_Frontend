@@ -9,11 +9,12 @@ import LoginPage from "../pages/LoginPage";
 import Profile from "../pages/Profile"
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./publicroute";
+import Requests from "../pages/Requests";
 
 
 export const router = createBrowserRouter([
   {
-    element: <AppLayout />, // ✅ Fetches session globally
+    element: <AppLayout />, // Fetches session globally
     children: [
       {
         element: <PublicLayout />,
@@ -53,6 +54,14 @@ export const router = createBrowserRouter([
             element: (
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "requests",
+            element: (
+              <ProtectedRoute>
+                <Requests />
               </ProtectedRoute>
             ),
           },

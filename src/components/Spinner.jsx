@@ -2,7 +2,9 @@
 
 const Spinner = () => {
     return (
-        <span className="loading loading-spinner loading-xl" aria-label="loading" />
+        <div className="flex justify-center min-h-full">
+            <span className="loading loading-spinner loading-xl" aria-label="loading" />
+        </div>
     )
 }
 
