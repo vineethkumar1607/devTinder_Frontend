@@ -32,10 +32,8 @@ const UsersList = React.memo(({
                 <div className="flex items-center space-x-4">
                   <img
                     alt={`${user.firstName || "User"} image`}
-                    height="40"
-                    width="40"
                     src={user.photoUrl || "/default-avatar.png"}
-                    className="rounded-full"
+                    className="w-12 h-12 rounded-full object-cover"
                   />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-xl font-medium text-gray-900 dark:text-white">

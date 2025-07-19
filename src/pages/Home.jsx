@@ -22,13 +22,14 @@ const Home = () => {
     if (error) {
         <ErrorPage error={error} />
     }
+
     return (
         usersFeed.length > 0 ? (
-            <div className="flex justify-center my-12">
+            <div className="flex  justify-center my-12">
                 <FeedUserCard user={usersFeed[0]} />
             </div>
         ) : (
-            <div className="text-center my-12 text-gray-500">No users found.</div>
+            <div className="text-center  my-12 text-gray-500">No users found.</div>
         )
     )
 }

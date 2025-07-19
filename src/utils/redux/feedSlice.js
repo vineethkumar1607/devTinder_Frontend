@@ -20,10 +20,13 @@ const feedSlice = createSlice({
     name: "feed",
     initialState,
     reducers: {
-        clearFeed: (state) => {
-            state.usersFeed = [],
-                state.isLoading = false,
-                state.error = null
+        removeUserFromFeed: (state, action) => {
+            return {
+                ...state, // Copying all existing state
+                usersFeed: state.usersFeed.filter(user => user._id !== action.payload),
+                isLoading: false,
+                error: null
+            };
         }
     },
     extraReducers: (builder) => {
@@ -48,5 +51,5 @@ const feedSlice = createSlice({
     }
 })
 
-export const { clearFeed } = feedSlice.actions;
+export const { removeUserFromFeed } = feedSlice.actions;
 export default feedSlice.reducer

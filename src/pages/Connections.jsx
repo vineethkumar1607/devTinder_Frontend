@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { fetchConnections } from '../utils/redux/connectionsSlice';
-import connectionsReducer from "../utils/redux/connectionsSlice"
 import { useDispatch, useSelector } from 'react-redux';
 import UsersList from '../components/UsersList';
 
@@ -12,15 +11,12 @@ const Connections = () => {
         error,
         uiStrings
     } = useSelector((state) => state.connections);
- 
+
     useEffect(() => {
-
         dispatch(fetchConnections())
-
     }, [dispatch]);
 
-    const allConnections = connections
-   
+
     return (
         <div className='mt-10'>
             <UsersList

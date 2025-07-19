@@ -5,7 +5,7 @@ import PublicLayout from "../layouts/PublicLayout";
 import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
 import Connections from "../pages/Connections";
-import LoginPage from "../pages/LoginPage";
+import AuthenticationPage from "../pages/AuthenticationPage";
 import Profile from "../pages/Profile"
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./publicroute";
@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
             path: "/login",
             element: (
               <PublicRoute>
-                <LoginPage />
+                <AuthenticationPage />
               </PublicRoute>
             ),
           },

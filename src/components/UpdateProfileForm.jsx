@@ -37,17 +37,20 @@ const UpdateProfileForm = ({ userDetails }) => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={profilevalidation}
-      onSubmit={handleSubmit}
-      validateOnChange={false}
-      validateOnBlur={true}
-    >
-      {({ values, setFieldValue, isSubmitting }) => (
-        <div className='bg-base-300 flex flex-wrap justify-center gap-8 p-8'>
-          <div className='flex-1 min-w-[300px] max-w-xl'>
-            <Form className='max-w-md mx-auto p-4'>
+   <Formik
+  initialValues={initialValues}
+  validationSchema={profilevalidation}
+  onSubmit={handleSubmit}
+  validateOnChange={false}
+  validateOnBlur={true}
+>
+  {({ values, setFieldValue, isSubmitting }) => (
+    <div className=' p-8'>
+      <div className='flex flex-wrap justify-center gap-8'>
+        {/* Form Card - Now with explicit card styling */}
+        <div className='card bg-base-100 shadow-xl flex-1 min-w-[300px] max-w-xl'>
+          <div className='card-body'>
+            <Form className='w-full'>
               <Field as={TextInput} label='First Name' id="firstName-input" name='firstName' type='text' />
               <ErrorMessage name='firstName' component='div' className='text-red-500 text-sm' />
 
@@ -83,13 +86,18 @@ const UpdateProfileForm = ({ userDetails }) => {
               </button>
             </Form>
           </div>
+        </div>
 
-          <div className='flex-1 min-w-[300px] max-w-md'>
+        {/* User Card - Now with explicit card styling */}
+        <div className='card bg-base-100 shadow-xl flex-1 min-w-[300px] max-w-md'>
+          <div className='card-body'>
             <FeedUserCard user={values} />
           </div>
         </div>
-      )}
-    </Formik>
+      </div>
+    </div>
+  )}
+</Formik>
   );
 };
 
