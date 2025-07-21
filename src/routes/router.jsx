@@ -8,7 +8,7 @@ import Connections from "../pages/Connections";
 import AuthenticationPage from "../pages/AuthenticationPage";
 import Profile from "../pages/Profile"
 import ProtectedRoute from "./ProtectedRoute";
-import PublicRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
 import Requests from "../pages/Requests";
 
 
